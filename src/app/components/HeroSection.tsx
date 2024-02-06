@@ -1,4 +1,6 @@
+"use client"
 import Image from "next/image"
+import { TypeAnimation } from "react-type-animation"
 
 /* eslint-disable react/no-unescaped-entities */
 export default function HeroSection() {
@@ -6,11 +8,25 @@ export default function HeroSection() {
     <section>
       <div className="grid grid-cols-1 sm:grid-cols-12 my-4">
         <div className="col-span-7 place-self-center place-items-center grid lg:place-items-start sm:text-left">
-          <h1 className="tex-white mb-4 sm:text-5xl lg:text-6xl">
+          <h1 className="tex-white mb-4 text-5xl lg:text-6xl font-extrabold">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
               Hello, I'm {""}
             </span>
-            Espezzialy
+            <TypeAnimation
+              sequence={[
+                "Espezzialy",
+                1000,
+                "Software Engineer",
+                1000,
+                "Fullstack Developer",
+                1000,
+                "Android Developer",
+                1000
+              ]}
+              wrapper="span"
+              speed={28}
+              repeat={Infinity}
+            />
           </h1>
           <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
             {" "}
