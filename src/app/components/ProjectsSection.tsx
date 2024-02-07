@@ -1,4 +1,7 @@
+"use client"
+import { useState } from "react"
 import ProjectCard from "./ProjectCard"
+import ProjectTag from "./ProjectTag"
 
 const projectsData = [
   {
@@ -58,21 +61,40 @@ const projectsData = [
 ]
 
 export default function ProjectsSection() {
+  const [tag, setTag] = useState("All")
+
+  const handleTagChange = (newTag: string) => {
+    setTag(newTag)
+  }
+
+  const filteredProjects = projectsData.filter((project) =>
+    project.tag.includes(tag)
+  )
+
   return (
     <div>
       <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
         My projects
       </h2>
       <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <button className="rounded-full border-2 border-blue-600 px-6 py-2 text-xl cursor-pointer">
-          All
-        </button>
-        <button className="rounded-full border-2 border-slate-600  hover:border-white px-6 py-2 text-xl cursor-pointer">
-          Web
-        </button>
+        <ProjectTag
+          name="All"
+          onClick={handleTagChange}
+          isSelected={tag === "All"}
+        />
+        <ProjectTag
+          name="Web"
+          onClick={handleTagChange}
+          isSelected={tag === "Web"}
+        />
+        <ProjectTag
+          name="Mobile"
+          onClick={handleTagChange}
+          isSelected={tag === "Mobile"}
+        />
       </div>
       <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {projectsData.map((project) => (
+        {filteredProjects.map((project) => (
           <ProjectCard
             key={project.id}
             title={project.title}
