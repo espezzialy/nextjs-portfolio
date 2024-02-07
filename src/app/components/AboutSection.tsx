@@ -8,7 +8,7 @@ const TAB_DATA = [
     title: "Skills",
     id: "skills",
     content: (
-      <ul>
+      <ul className="list-disc pl-2">
         <li>Node.js</li>
         <li>Kotlin</li>
         <li>JAVA</li>
@@ -23,7 +23,7 @@ const TAB_DATA = [
     title: "Education",
     id: "education",
     content: (
-      <ul>
+      <ul className="list-disc pl-2">
         <li>Fullstack academy of Code</li>
         <li>University Federal of Minas Gerais</li>
       </ul>
@@ -33,7 +33,7 @@ const TAB_DATA = [
     title: "Certifications",
     id: "certification",
     content: (
-      <ul>
+      <ul className="list-disc pl-2">
         <li>Android Developer </li>
         <li>Fullstack Superior Developer</li>
       </ul>
@@ -61,7 +61,7 @@ export default function AboutSection() {
           alt={""}
           className="border border-gray-600 rounded-[52px] hover:opacity-80"
         />
-        <div>
+        <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
           <p className="text-base md:text-lg ">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis
@@ -69,7 +69,7 @@ export default function AboutSection() {
             nostrum voluptas! Mollitia aliquid impedit dolorem sit veniam at,
             deserunt corrupti.
           </p>
-          <div className="flex flex-row mt-8">
+          <div className="flex flex-row justify-start mt-8">
             {TAB_DATA.map((item, index) => (
               <TabButton
                 key={index}
