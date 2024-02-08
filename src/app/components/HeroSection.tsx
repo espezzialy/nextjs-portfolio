@@ -14,7 +14,7 @@ export default function HeroSection() {
           transition={{ duration: 0.5 }}
           className="col-span-8 place-self-center place-items-center grid lg:place-items-start sm:text-left"
         >
-          <h1 className="tex-white mb-4 text-5xl lg:text-7xl lg:leading-normal justify-self-star font-extrabold">
+          <h1 className="tex-white mb-4 text-5xl lg:text-7xl lg:leading-normal justify-self-start font-extrabold">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
               Hello, I'm <br></br>
             </span>
