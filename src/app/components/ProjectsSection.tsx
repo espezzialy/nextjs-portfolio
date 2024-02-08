@@ -1,7 +1,8 @@
 "use client"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import ProjectCard from "./ProjectCard"
 import ProjectTag from "./ProjectTag"
+import { motion, useInView } from "framer-motion"
 
 const projectsData = [
   {
@@ -60,7 +61,14 @@ const projectsData = [
   }
 ]
 
+const cardVariants = {
+  initial: { y: 50, opacity: 0 },
+  animate: { y: 0, opacity: 1 }
+}
+
 export default function ProjectsSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
   const [tag, setTag] = useState("All")
 
   const handleTagChange = (newTag: string) => {
@@ -72,7 +80,7 @@ export default function ProjectsSection() {
   )
 
   return (
-    <div>
+    <section>
       <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
         My projects
       </h2>
@@ -93,18 +101,26 @@ export default function ProjectsSection() {
           isSelected={tag === "Mobile"}
         />
       </div>
-      <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {filteredProjects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            imgUrl={project.image}
-            girUrl={project.gitUrl}
-            previewUrl={project.previewUrl}
-          />
+      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
+        {filteredProjects.map((project, index) => (
+          <motion.li
+            key={index}
+            variants={cardVariants}
+            initial="initial"
+            animate={isInView ? "animate" : "initial"}
+            transition={{ duration: 0.3, delay: index * 0.2 }}
+          >
+            <ProjectCard
+              key={project.id}
+              title={project.title}
+              description={project.description}
+              imgUrl={project.image}
+              girUrl={project.gitUrl}
+              previewUrl={project.previewUrl}
+            />
+          </motion.li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   )
 }
