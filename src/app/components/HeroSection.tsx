@@ -19,6 +19,7 @@ export default function HeroSection() {
               Hello, I'm <br></br>
             </span>
             <TypeAnimation
+              className="text-white"
               sequence={[
                 "Espezzialy",
                 1000,
