@@ -1,19 +1,32 @@
+"use client"
+import dynamic from "next/dynamic"
+import AnimatedNumbers from "react-animated-numbers"
+
+// const AnimatedNumbers = dynamic(
+//   () => {
+//     return import("react-animated-numbers")
+//   },
+//   { ssr: false }
+// )
+
 const achievementsList = [
   {
     metric: "Projects",
-    value: "100+"
+    value: "100",
+    postfix: "+"
   },
   {
+    prefix: "~",
     metric: "Users",
-    value: "1M+"
+    value: "100000"
   },
   {
     metric: "Awards",
-    value: "10+"
+    value: "7"
   },
   {
     metric: "Years",
-    value: "5+"
+    value: "5"
   }
 ]
 
@@ -27,8 +40,19 @@ export default function ArchievementsSection() {
               key={index}
               className="flex flex-col items-center justify-center sm:mx-4"
             >
-              <h2 className="text-white  sm:text-4xl font-bold">
-                {achievement.value}
+              <h2 className="text-white  sm:text-4xl font-bold flex flex-row">
+                {achievement.prefix}
+                <AnimatedNumbers
+                  includeComma
+                  animateToNumber={parseInt(achievement.value)}
+                  locale="en-US"
+                  className="text-white sm:text-4xl font-bold"
+                  transitions={(index) => ({
+                    type: "spring",
+                    duration: index + 0.3
+                  })}
+                />
+                {achievement.postfix}
               </h2>
               <p className="text-[#ADB7BE] text-base">{achievement.metric}</p>
             </div>
